@@ -12,24 +12,16 @@
     <div id="app">
       <div class="nav-bar"></div>
 
-      <div class="cart">Cart({{ cart }})</div>
-      <!-- ** Notes **-->
-      <product-display :premium="premium"></product-display>
-      <!--
-        The above section 'product-display' is being imported
-        from our JS file ProductDisplay.js, where we define our 
-        HTML and JS relevant to that section of HTML
-      -->
-      <product-display></product-display>
-      <product-display></product-display>
+      <div class="cart">Cart({{ cart.length }})</div>
+      <product-display :premium="premium" @add-to-cart="updateCart" ></product-display>
     </div>
-    
 
     <!-- Import App -->
     <script src="./js/main.js"></script>
-    
-    <!--Import Component-->
+
+    <!-- Import Components -->
     <script src="./js/ProductDisplay.js"></script>
+
     <!-- Mount App -->
     <script>
       const mountedApp = app.mount('#app')
