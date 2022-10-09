@@ -11,58 +11,38 @@
   <body>
     <div id="app">
       <div class="nav-bar"></div>
+
+      <div class="cart">Cart({{ cart }})</div>
       
       <div class="product-display">
         <div class="product-container">
           <div class="product-image">
-            <!--<img v-bind:src="image">-->
-            <img :src="image"> <!--Notes: v-bind can be summarized with ':'-->
-            <!-- image goes here -->
+            <img v-bind:src="image">
           </div>
           <div class="product-info">
             <h1>{{ product }}</h1>
-            
-            
-
-
-            <!-- Example Start -->
-
-            <!-- Start v-if/v-else  -->
-            
-            
-            <!-- <p v-if="inStock">In Stock</p>--> <!--Do not need to pair v-if w/ v-else -->
-            <!-- <p v-else>Out of Stock</p> -->
-            
-            <p v-if="inventory > 10">In Stock</p><!--Do not need to pair v-if w/ v-else -->
-            <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out</p>
+            <p v-if="inStock">In Stock</p>
             <p v-else>Out of Stock</p>
-            
-            
             <ul>
-              <li v-for="detail in details">{{detail}}</li> 
-              <!-- ** Notes ** -->
-
-              <!--
-                'details' references to the array 
-                within main.js and 'detail' is each reference 
-                within the array. v-for appears to be equivalent 
-                to 'for' loop
-              -->
+              <li v-for="detail in details">{{ detail }}</li>
             </ul>
-            <div v-for="variant in variants" :key="variant.id">{{variant.color}}</div>
-            
-
-            <!-- End v-if/v-else -->
+            <div v-for="variant in variants" :key="variant.id" @mouseover="updaetImage(variant.image)">{{ variant.color }}</div>
             
             
-            <!-- ** NOTES ** -->
-            <!--
-              Example Here: 
-
-              <p v-show>Out of Stock</p> 
             
+            <!-- <button class="button" v-on:click="cart += 1">Add to Cart</button> -->
+            <!-- ** Notes ** -->
+            <!-- 
+              Here, we create an onclick event for adding to the main.js variable 'cart' 
+              and increment its value by 1 on click
             -->
-            <!--This will toggle the display attribute of the value -->
+            
+            
+            <button class="button" v-on:click="addToCart">Add to Cart</button>
+            <!-- ** Notes ** -->
+            <!-- 
+              Here, we create an onclick that references a method within main.js
+            -->
           </div>
         </div>
       </div>
