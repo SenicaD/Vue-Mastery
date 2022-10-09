@@ -26,23 +26,15 @@
             <ul>
               <li v-for="detail in details">{{ detail }}</li>
             </ul>
-            <div v-for="variant in variants" :key="variant.id" @mouseover="updaetImage(variant.image)">{{ variant.color }}</div>
-            
-            
-            
-            <!-- <button class="button" v-on:click="cart += 1">Add to Cart</button> -->
-            <!-- ** Notes ** -->
-            <!-- 
-              Here, we create an onclick event for adding to the main.js variable 'cart' 
-              and increment its value by 1 on click
-            -->
-            
-            
-            <button class="button" v-on:click="addToCart">Add to Cart</button>
-            <!-- ** Notes ** -->
-            <!-- 
-              Here, we create an onclick that references a method within main.js
-            -->
+
+            <div 
+              v-for="variant in variants" 
+              :key="variant.id" 
+              @mouseover="updateImage(variant.image)" 
+              class="color-circle"
+              :style="{backgroundColor:variant.color}"
+              ></div>
+            <button class="button" :class='{disabledButton: !inStock}' :disabled='!inStock' @click="addToCart">Add to Cart</button>
           </div>
         </div>
       </div>
